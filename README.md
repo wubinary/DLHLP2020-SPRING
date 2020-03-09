@@ -1,2 +1,2 @@
-# NTU_HLP_HW1_ASR
+# DLHLP2020-SPRING
 acousic speech recognision
