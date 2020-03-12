@@ -2,3 +2,6 @@
 
 ## Homework 1 
 acousic speech recognision
+
+
+
