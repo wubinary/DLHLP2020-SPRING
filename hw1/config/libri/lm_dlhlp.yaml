@@ -9,11 +9,11 @@ data:
     batch_size: 32
   text:
     mode: 'character'                     # 'character'/'word'/'subword'
-    vocab_file: 'tests/sample_data/subword-16k.model'
+    vocab_file: 'vocab_file.txt'
 
 hparas:                                   # Experiment hyper-parameters
-  valid_step: 10000
-  max_step: 100000000
+  valid_step: 5000
+  max_step: 60000
   optimizer: 'Adam'
   lr: 0.0001
   eps: 0.00000001

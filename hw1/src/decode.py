@@ -95,6 +95,16 @@ class BeamDecoder(nn.Module):
                 self.asr.ctc_layer(encode_feature), dim=-1)
             ctc_prefix = CTCPrefixScore(ctc_output)
             ctc_state = ctc_prefix.init_state()
+            if self.ctc_w == 1.0:
+                output_seq = ctc_output[0].argmax(dim=-1)
+                hypothesis = [Hypothesis(decoder_state=dec_state, 
+                                         output_seq=output_seq,
+                                         output_scores=[0]+len(output_seq),
+                                         lm_state=None,
+                                         ctc_prob=0,
+                                         ctc_state=ctc_state,
+                                         att_map=None)]
+                return hypothesis 
 
         # Start w/ empty hypothesis
         prev_top_hypothesis = [Hypothesis(decoder_state=dec_state, output_seq=[],
