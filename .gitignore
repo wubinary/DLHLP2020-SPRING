@@ -1,3 +1,4 @@
 
 *.pth
-
+*.pyc
+hw1/log/
