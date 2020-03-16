@@ -97,14 +97,15 @@ class BeamDecoder(nn.Module):
             ctc_state = ctc_prefix.init_state()
             if self.ctc_w == 1.0:
                 output_seq = ctc_output[0].argmax(dim=-1)
-                hypothesis = [Hypothesis(decoder_state=dec_state, 
+                output_seq = ctc_processing(output_seq)
+                hypothesis = [Hypothesis(decoder_state=dec_state,
                                          output_seq=output_seq,
-                                         output_scores=[0]+len(output_seq),
+                                         output_scores=[0]*len(output_seq),
                                          lm_state=None,
                                          ctc_prob=0,
                                          ctc_state=ctc_state,
                                          att_map=None)]
-                return hypothesis 
+                return hypothesis
 
         # Start w/ empty hypothesis
         prev_top_hypothesis = [Hypothesis(decoder_state=dec_state, output_seq=[],
@@ -186,7 +187,7 @@ class BeamDecoder(nn.Module):
 
 class Hypothesis:
     '''Hypothesis for beam search decoding.
-       Stores the history of label sequence & score 
+       Stores the history of label sequence & score
        Stores the previous decoder state, ctc state, ctc score, lm state and attention map (if necessary)'''
 
     def __init__(self, decoder_state, output_seq, output_scores, lm_state, ctc_state, ctc_prob, att_map):
@@ -266,3 +267,20 @@ class Hypothesis:
     @property
     def outIndex(self):
         return [i.item() for i in self.output_seq]
+
+def ctc_processing(seq):
+    i = 0
+    length = seq.shape[0]
+    while i < length:
+        j = i+1
+        if seq[i] == 0:
+            i += 1
+            continue
+        while j < length:
+            if seq[i] == seq[j]:
+                seq[j] = 0
+                j += 1
+            else:
+                break
+        i += 1
+    return seq
