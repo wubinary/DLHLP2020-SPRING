@@ -20,7 +20,7 @@ data:
     vocab_file: 'vocab_file.txt'
 
 hparas:                                   # Experiment hyper-parameters
-  valid_step: 100
+  valid_step: 300
   max_step: 12001
   tf_start: 1.0
   tf_end: 1.0
@@ -32,7 +32,7 @@ hparas:                                   # Experiment hyper-parameters
   curriculum: 0
 
 model:                                    # Model architecture
-  ctc_weight: 0.0                         # Weight for CTC loss
+  ctc_weight: 0.5                         # Weight for CTC loss
   encoder:
     prenet: 'vgg'                         # 'vgg'/'cnn'/''
     # vgg: True                             # 4x reduction on time feature extraction
@@ -47,7 +47,7 @@ model:                                    # Model architecture
   attention:
     mode: 'loc'                           # 'dot'/'loc'
     dim: 300
-    num_head: 1
+    num_head: 2
     v_proj: False                         # if False and num_head>1, encoder state will be duplicated for each head
     temperature: 0.5                      # scaling factor for attention
     loc_kernel_size: 100                  # just for mode=='loc'
