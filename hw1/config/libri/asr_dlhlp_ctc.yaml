@@ -5,7 +5,7 @@ data:
     train_split: ['train'] # Name of data splits to be used as training set
     dev_split: ['dev']              # Name of data splits to be used as validation set
     bucketing: True                       # Enable/Disable bucketing
-    batch_size: 32
+    batch_size: 16
   audio:                                  # Attributes of audio feature
     feat_type: 'fbank'
     feat_dim:  40
@@ -20,8 +20,8 @@ data:
     vocab_file: 'vocab_file.txt'
 
 hparas:                                   # Experiment hyper-parameters
-  valid_step: 300
-  max_step: 12001
+  valid_step: 200
+  max_step: 30001
   tf_start: 1.0
   tf_end: 1.0
   tf_step: 500000
@@ -32,7 +32,7 @@ hparas:                                   # Experiment hyper-parameters
   curriculum: 0
 
 model:                                    # Model architecture
-  ctc_weight: 0.5                         # Weight for CTC loss
+  ctc_weight: 0.1                         # Weight for CTC loss
   encoder:
     prenet: 'vgg'                         # 'vgg'/'cnn'/''
     # vgg: True                             # 4x reduction on time feature extraction
@@ -47,7 +47,7 @@ model:                                    # Model architecture
   attention:
     mode: 'loc'                           # 'dot'/'loc'
     dim: 300
-    num_head: 2
+    num_head: 1
     v_proj: False                         # if False and num_head>1, encoder state will be duplicated for each head
     temperature: 0.5                      # scaling factor for attention
     loc_kernel_size: 100                  # just for mode=='loc'

@@ -7,7 +7,7 @@ train_all: train_ASR train_LM
 train_ASR:
 	python3 main.py --config config/libri/asr_dlhlp.yaml # --load ckpt/asr_dlhlp_sd0/latest.pth
 train_ASR_CTC:
-	python3 main.py --config config/libri/asr_dlhlp_ctc.yaml # --load ckpt/asr_dlhlp_ctc_sd0/latest.pth
+	python3 main.py --config config/libri/asr_dlhlp_ctc.yaml  --load ckpt/asr_dlhlp_ctc_sd0/latest.pth
 train_LM:
 	python3 main.py --config config/libri/lm_dlhlp.yaml --lm  # --load ckpt/lm_dlhlp_sd0/best_ppx.pth
 

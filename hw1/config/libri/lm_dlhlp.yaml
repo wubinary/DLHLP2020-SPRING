@@ -6,19 +6,19 @@ data:
     train_split: ['train'] # Official LM src from LibriSpeech
     dev_split: ['dev']
     bucketing: True
-    batch_size: 32
+    batch_size: 16
   text:
     mode: 'character'                     # 'character'/'word'/'subword'
     vocab_file: 'vocab_file.txt'
 
 hparas:                                   # Experiment hyper-parameters
-  valid_step: 5000
-  max_step: 60000
+  valid_step: 200
+  max_step: 40000
   optimizer: 'Adam'
   lr: 0.0001
   eps: 0.00000001
   lr_scheduler: 'fixed'                    # 'fixed'/'warmup'
-  
+
 model:                                     # Model architecture
   emb_tying: False                         # https://arxiv.org/pdf/1608.05859.pdf
   emb_dim: 1024
@@ -26,5 +26,5 @@ model:                                     # Model architecture
   dim: 1024
   n_layers: 2
   dropout: 0.5
-  
-  
+
+
