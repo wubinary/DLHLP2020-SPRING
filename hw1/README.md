@@ -2,9 +2,13 @@
 
 origin github link : https://github.com/Alexander-H-Liu/End-to-end-ASR-Pytorch
 
-## Doc
-https://docs.google.com/document/d/16d09ABJA9GPYg2uubGQ_ZFrNNqfKyDxKHRALwB639b4/edit
+## slide 
+https://docs.google.com/presentation/d/1C2a1_V91EHjy3sgxy3rKWqU6hCIOOsbMWuOhYCZW5jQ/edit?fbclid=IwAR3PM3G2zwJwVO6Xm46Fp383WVty789yJq9agfs4inC_kLMxPsMIJj0eu-8
 
-## decoder_config
+## kaggle
+https://www.kaggle.com/c/dlhlp2020spring-asr
+
+## Report Doc
+https://docs.google.com/document/d/16d09ABJA9GPYg2uubGQ_ZFrNNqfKyDxKHRALwB639b4/edit
 
 
