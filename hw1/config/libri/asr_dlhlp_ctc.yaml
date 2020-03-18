@@ -32,17 +32,17 @@ hparas:                                   # Experiment hyper-parameters
   curriculum: 0
 
 model:                                    # Model architecture
-  ctc_weight: 0.1                         # Weight for CTC loss
+  ctc_weight: 0.2                         # Weight for CTC loss
   encoder:
     prenet: 'vgg'                         # 'vgg'/'cnn'/''
     # vgg: True                             # 4x reduction on time feature extraction
     module: 'LSTM'                        # 'LSTM'/'GRU'/'Transformer'
     bidirection: True
-    dim: [512,512]
-    dropout: [0,0]
-    layer_norm: [False,False]
-    proj: [True,True]      # Linear projection + Tanh after each rnn layer
-    sample_rate: [1,1]
+    dim: [512,512,512]
+    dropout: [0.3,0.3,0.3]
+    layer_norm: [False,False,False]
+    proj: [True,True,True]      # Linear projection + Tanh after each rnn layer
+    sample_rate: [1,1,1]
     sample_style: 'drop'                  # 'drop'/'concat'
   attention:
     mode: 'loc'                           # 'dot'/'loc'
