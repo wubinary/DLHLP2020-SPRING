@@ -16,9 +16,9 @@ tensorboard:
 
 CONFIG=decode
 test:
-	python3 main.py --config config/libri/$(CONFIG)_dlhlp.yaml --test --njobs 2
+	python3 main.py --config config/libri/$(CONFIG)_dlhlp.yaml --test --njobs 8
 test_CTC:
-	python3 main.py --config config/libri/$(CONFIG)_dlhlp_ctc.yaml --test --njobs 2
+	python3 main.py --config config/libri/$(CONFIG)_dlhlp_ctc.yaml --test --njobs 6
 eval:
 	python3 eval.py --file result/$(CONFIG)_dlhlp_dev_output.csv
 eval_CTC:
