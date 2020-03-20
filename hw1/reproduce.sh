@@ -7,10 +7,12 @@ else
 	printf "asr model exist\n"
 fi
 
+mkdir -p ckpt/lm_dlhlp_sd0
 if [ ! -f "ckpt/lm_dlhlp_sd0/best_ppx.pth" ]; then
 	wget http://lab.wubinray.com/model/DLHLP2020-SPRING/hw1/lm_dlhlp_sd0/best_ppx.pth -P ckpt/lm_dlhlp_sd0/
 else 
 	printf "lm model exist\n"
+fi
 
 dataset_path=$1
 
