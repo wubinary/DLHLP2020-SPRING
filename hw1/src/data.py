@@ -12,7 +12,7 @@ HALF_BATCHSIZE_TEXT_LEN = 150
 
 
 def collect_audio_batch(batch, audio_transform, mode):
-    '''Collects a batch, should be list of tuples (audio_path <str>, list of int token <list>) 
+    '''Collects a batch, should be list of tuples (audio_path <str>, list of int token <list>)
        e.g. [(file1,txt1),(file2,txt2),...] '''
 
     # Bucketed batch should be [[(file1,txt1),(file2,txt2),...]]
@@ -44,7 +44,7 @@ def collect_audio_batch(batch, audio_transform, mode):
 
 
 def collect_text_batch(batch, mode):
-    '''Collects a batch of text, should be list of list of int token 
+    '''Collects a batch of text, should be list of list of int token
        e.g. [txt1 <list>,txt2 <list>,...] '''
 
     # Bucketed batch should be [[txt1, txt2,...]]
@@ -69,7 +69,7 @@ def create_dataset(tokenizer, ascending, name, path, bucketing, batch_size,
     if name.lower() == "librispeech":
         from corpus.librispeech import LibriDataset as Dataset
     elif name.lower() == "dlhlp":
-       from corpus.dlhlp import DlhlpDataset as Dataset  
+       from corpus.dlhlp import DlhlpDataset as Dataset
     else:
         raise NotImplementedError
 
@@ -112,7 +112,7 @@ def create_textset(tokenizer, train_split, dev_split, name, path, bucketing, bat
     if name.lower() == "librispeech":
         from corpus.librispeech import LibriTextDataset as Dataset
     elif name.lower() == "dlhlp":
-        from corpus.dlhlp import DlhlpTextDataset as Dataset 
+        from corpus.dlhlp import DlhlpTextDataset as Dataset
     else:
         raise NotImplementedError
 
@@ -193,3 +193,25 @@ def _data_msg(name, path, train_split, tr_set, dev_split, dv_set, batch_size, bu
     msg_list.append('           | Batch size = {}\t\t| Bucketing = {}'.format(
         batch_size, bucketing))
     return msg_list
+
+
+def repro_load_dataset(n_jobs, use_gpu, pin_memory, ascending, corpus, audio, text):
+    ''' Prepare dataloader for testing'''
+
+    # Audio feature extractor
+    audio_transform, feat_dim = create_transform(audio.copy())
+    # Text tokenizer
+    tokenizer = load_text_encoder(**text)
+    # Dataset (in testing mode, tr_set=dv_set, dv_set=tt_set)
+    from corpus.dlhlp import DlhlpDataset as Dataset
+    dv_set = Dataset(corpus['path'], corpus['test_split'], tokenizer, 1)
+    # Collect function
+    collect_dv = partial(collect_audio_batch,
+                         audio_transform=audio_transform, mode='test')
+    # Create data loader
+    dv_set = DataLoader(dv_set, batch_size=1, shuffle=False, drop_last=False, collate_fn=collect_dv,
+                        num_workers=n_jobs, pin_memory=pin_memory)
+
+    msg = 'I/O spec.  | Audio feature = {}\t| feature dim = {}\t| Token type = {}\t| Vocab size = {}'.format(
+            audio['feat_type'], feat_dim, tokenizer.token_type, tokenizer.vocab_size)
+    return dv_set, feat_dim, tokenizer.vocab_size, tokenizer, msg
