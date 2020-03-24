@@ -23,7 +23,7 @@ sed -i "s+/media/D/DLHLP+${part1}+g" config/libri/asr_dlhlp_ctc.yaml
 sed -i "s+/media/D/DLHLP+${part1}+g" config/libri/lm_dlhlp.yaml
 
 #make test_CTC
-python3 reproduce.py --config config/libri/decode_dlhlp_ctc.yaml --test --njobs 1
+python3 reproduce.py --config config/libri/decode_dlhlp_ctc.yaml --test --njobs  6
 
 make ANS_CSV_PATH=$2 submit_reproduce
 
