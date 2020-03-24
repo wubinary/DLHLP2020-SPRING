@@ -24,7 +24,7 @@ sed -i "s+/media/D/DLHLP+${part1}+g" config/libri/lm_dlhlp.yaml
 
 NJOBS=6
 #make test_CTC
-python3 reproduce.py --config config/libri/decode_dlhlp_ctc.yaml --test --njobs  $NJOBS
+python3 reproduce.py --config config/libri/decode_dlhlp_ctc.yaml --test --njobs $NJOBS
 
 make ANS_CSV_PATH=$2 submit_reproduce
 
