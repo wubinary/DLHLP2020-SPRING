@@ -32,5 +32,5 @@ submit_reproduce:
 	python3 format.py result/$(CONFIG)_dlhlp_ctc_test_output.csv $(ANS_CSV_PATH)
 
 REPRODUCE:
-	bash reproduce.sh /media/D/DLHLP ans.csv 
+	bash reproduce.sh /media/D/DLHLP/test ans.csv
 
