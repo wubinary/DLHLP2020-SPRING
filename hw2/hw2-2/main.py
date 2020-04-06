@@ -65,8 +65,8 @@ if __name__ == '__main__':
 
     # Test configuration.
     parser.add_argument('--test_iters', type=int, default=200000, help='test model from this step')
-    parser.add_argument('--src_speaker', type=str, default=None, help='test model source speaker')
-    parser.add_argument('--trg_speaker', type=str, default="['SF1', 'TM1']", help='string list repre of target speakers eg."[a,b]"')
+    parser.add_argument('--src_speaker', type=str, default='p1', help='test model source speaker')
+    parser.add_argument('--trg_speaker', type=str, default="['p2']", help='string list repre of target speakers eg."[a,b]"')
 
     # Miscellaneous.
     parser.add_argument('--num_workers', type=int, default=4)
