@@ -278,7 +278,7 @@ class Solver(object):
 
                         convert_con = np.concatenate(convert_result, axis=1)
                         convert_con = convert_con[:, 0:content['coded_sp_norm'].shape[1]]
-                        contigu = np.ascontiguousarray(convert_con.T, dtype=np.float32)   
+                        contigu = np.ascontiguousarray(convert_con.T, dtype=np.float64)   
                         decoded_sp = decode_spectral_envelope(contigu, SAMPLE_RATE, fft_size=FFTSIZE)
                         f0_converted = norm.pitch_conversion(f0, speaker, target)
                         wav = synthesize(f0_converted, decoded_sp, ap, SAMPLE_RATE).astype(np.float32)
