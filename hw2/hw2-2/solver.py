@@ -2,6 +2,7 @@ import os
 import time
 from datetime import datetime, timedelta
 
+import scipy
 import numpy as np
 import torch
 import torch.nn as nn
@@ -155,9 +156,11 @@ class Solver(object):
             #                             2. Train the discriminator                              #
             # =================================================================================== #
             # Compute loss with real audio frame.
-            CELoss = nn.CrossEntropyLoss()
-            cls_real = self.C(x_real)
-            cls_loss_real = CELoss(input=cls_real, target=speaker_idx_org)
+            ## Modified
+            CELoss = nn.BCELoss()
+            m = nn.Sigmoid()
+            cls_real = self.C(x_real).squeeze(1)
+            cls_loss_real = CELoss(input=m(cls_real), target=speaker_idx_org)
 
             self.reset_grad()
             cls_loss_real.backward()
@@ -173,8 +176,9 @@ class Solver(object):
             d_loss_t = F.binary_cross_entropy_with_logits(input=out_f,target=torch.zeros_like(out_f, dtype=torch.float)) + \
                 F.binary_cross_entropy_with_logits(input=out_r, target=torch.ones_like(out_r, dtype=torch.float))
            
-            out_cls = self.C(x_fake)
-            d_loss_cls = CELoss(input=out_cls, target=speaker_idx_trg)
+            ## Modified
+            out_cls = self.C(x_fake).squeeze(1)
+            d_loss_cls = CELoss(input=m(out_cls), target=speaker_idx_trg)
 
             # Compute loss for gradient penalty.
             alpha = torch.rand(x_real.size(0), 1, 1, 1).to(self.device)
@@ -203,8 +207,9 @@ class Solver(object):
                 g_out_src = self.D(x_fake, label_trg)
                 g_loss_fake = F.binary_cross_entropy_with_logits(input=g_out_src, target=torch.ones_like(g_out_src, dtype=torch.float))
                 
-                out_cls = self.C(x_real)
-                g_loss_cls = CELoss(input=out_cls, target=speaker_idx_org)
+                ## Modified
+                out_cls = self.C(x_real).squeeze(1)
+                g_loss_cls = CELoss(input=m(out_cls), target=speaker_idx_org)
 
                 # Target-to-original domain.
                 x_reconst = self.G(x_fake, label_org)
@@ -276,12 +281,12 @@ class Solver(object):
                         contigu = np.ascontiguousarray(convert_con.T, dtype=np.float64)   
                         decoded_sp = decode_spectral_envelope(contigu, SAMPLE_RATE, fft_size=FFTSIZE)
                         f0_converted = norm.pitch_conversion(f0, speaker, target)
-                        wav = synthesize(f0_converted, decoded_sp, ap, SAMPLE_RATE)
+                        wav = synthesize(f0_converted, decoded_sp, ap, SAMPLE_RATE).astype(np.float32)
 
                         name = f'{speaker}-{target}_iter{i+1}_{filename}'
                         path = os.path.join(self.sample_dir, name)
                         print(f'[save]:{path}')
-                        librosa.output.write_wav(path, wav, SAMPLE_RATE)
+                        scipy.io.wavfile.write(path, SAMPLE_RATE, wav)
                         
             # Save model checkpoints.
             if (i+1) % self.model_save_step == 0:
@@ -384,12 +389,12 @@ class Solver(object):
                     contigu = np.ascontiguousarray(convert_con.T, dtype=np.float64)   
                     decoded_sp = decode_spectral_envelope(contigu, SAMPLE_RATE, fft_size=FFTSIZE)
                     f0_converted = norm.pitch_conversion(f0, speaker, target)
-                    wav = synthesize(f0_converted, decoded_sp, ap, SAMPLE_RATE)
+                    wav = synthesize(f0_converted, decoded_sp, ap, SAMPLE_RATE).astype(np.float32)
 
                     name = f'{speaker}-{target}_iter{self.test_iters}_{filename}'
                     path = os.path.join(self.result_dir, name)
                     print(f'[save]:{path}')
-                    librosa.output.write_wav(path, wav, SAMPLE_RATE)            
+                    scipy.io.wavfile.write(path, SAMPLE_RATE, wav)            
 
 
     
