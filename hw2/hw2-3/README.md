@@ -1,91 +1,120 @@
-# PyTorch Implementation of Non-Parallel Voice Conversion with CycleVAE
+Re-implementation of paper [Voice Conversion from Unaligned Corpora using Variational Autoencoding Wasserstein Generative Adversarial Networks](https://arxiv.org/abs/1704.00849). on PyTorch
 
 
-----
-## Usage
-    $cd tools
-    $make
-    $cd ../egs/one-to-one
-
-open run.sh
-
-set stage=0123 for full feature extraction
-
-    $bash run.sh
-
-*to compute speaker configs, run with stage=1, then with stage=a, then change accordingly, then run stage=1 again*
-
-*computed f0 and power histograms will be stored in exp/init\_spk\_stat*
-
-set stage=4 for training
-
-    $bash run.sh
+# Dependency
+- Linux Ubuntu 16.04  
+- Python 3.6 
+    - PyTorch 0.4.0  
+    - Numpy
+    - Soundfile
+    - PyWorld
+<br/>
 
 
-----
-## Stage details
-STAGE 0: data list preparation
-
-STAGE 1: feature extraction
-
-STAGE a: calculation of f0 and power threshold statistics for feature extraction [speaker configs are in conf/]
-
-STAGE 2: calculation of feature statistics for model development
-
-STAGE 3: extraction of converted excitation features for cyclic flow
-
-STAGE 4: model training
-
-STAGE 5: calculation of GV statistics of converted mcep
-
-STAGE 6: decoding and waveform conversion
+### Note:
+1. Be sure to use create a virtual environment (using `conda` or `virtualenv`)
+2. `soundfile` might require `sudo apt-get install` some codecs.  
+<br/>
+<br/>
 
 
-----
-## Trained examples
+# Usage
+```bash
+# source activate [your env]
 
-Example of trained models, converted wavs, and logs can be accessed in [trained_example](http://bit.ly/309zWXc)
-which used speakers SF1 and TF1 from Voice Conversion Challenge (VCC) 2018.
+bash download.sh
 
-    $cd cyclevae-vc_trained/egs/one-to-one/
+# install the required packages
+pip install -r requirements.txt
 
-open run.sh
+# feature extraction
+python analyzer.py \
+--dir_to_wav dataset/vcc2016/wav \
+--dir_to_bin dataset/vcc2016/bin 
 
-set stage=5 for GV stat calc.
+# collect stats
+python build.py \
+--train_file_pattern "dataset/vcc2016/bin/Training Set/*/*.bin" \
+--corpus_name vcc2016
 
-    $bash run.sh
+# training
+python main-vawgan.py --corpus_name vcc2016
 
-set stage=6 for decoding and wav conversion
+# conversion
+python convert-vawgan.py \
+--corpus_name vcc2016 \
+--src SF1 \
+--trg TM3 \
+--model_name [model_name].pt\
+--file_pattern "./dataset/vcc2016/bin/Testing Set/{}/*.bin"
+# Just an example; Please fill in `model_name`.
+```
 
-    $bash run.sh
+Description:  
+1. Run `bash download.sh` to prepare the VCC2016 dataset.  
+2. Run `analyzer.py` to extract features and write features into binary files. (This takes a few minutes.)  
+3. Run `build.py` to collect stats, such as spectral extrema and pitch.  
+4. To train a VAWGAN, for example, run  
+5. You can find your models in `./model/[model_name].pt`  
+6. To convert the voice, run  
+7. You can find the converted wav files in `./logdir/output/[timestamp]`  
 
-one of the example of model, converted wavs and logs are located in exp/tr50\_22.05k\_cyclevae\_gauss_VCC2SF1-VCC2TF1\_hl1\_hu1024\_ld32\_ks3\_ds2\_cyc2\_lr1e-4\_bs80\_wd0.0\_do0.5\_epoch500\_bsu1\_bsue1/
-
-to summarize training log, use
-
-    $sh loss_summary.sh
-
-
-----
-## Soon to be added features
-* CycleVQVAE
-* Many-to-Many VC with CycleVAE
-* Many-to-Many VC with CycleVQVAE
-
-*which have been implemented, will be added after finishing the journal*
-
-
-----
-## Contact
-If there are any questions or problems, especially about hyperparameters and other settings, please let me know.
-
-Patrick Lumban Tobing (Patrick)
-
-patrick.lumbantobing@g.sp.m.is.nagoya-u.ac.jp
+<br/>
 
 
-----
-## Reference
-P. L. Tobing, Y.-C. Wu, T. Hayashi, K. Kobayashi, and T. Toda, “Non-parallel voice conversion with cyclic
-variational autoencoder”, CoRR arXiv preprint arXiv: 1907.10185, 2019. (Accepted for INTERSPEECH 2019)
+# Dataset
+Voice Conversion Challenge 2016 (VCC2016): [download page](https://datashare.is.ed.ac.uk/handle/10283/2211)  
+<br/>
+
+# Model  
+ - [x] Conditional VAWGAN
+<br/>
+<br/>
+
+
+# Folder Hierarchy
+You only have to prepare the audio files in the following structure:
+```
+dataset
+  vcc2016
+    wav
+      Training Set
+      Testing Set
+        SF1
+        SF2
+        ...
+        TM3
+```  
+The speaker list will be built up automatically during training.  
+<br/>
+
+
+
+# Binary data format
+The [WORLD vocdoer](https://github.com/mmorise/World) features and the speaker label are stored in binary format.  
+Format:  
+```
+[[s1, s2, ..., s513, a1, ..., a513, f0, en, spk],
+ [s1, s2, ..., s513, a1, ..., a513, f0, en, spk],
+ ...,
+ [s1, s2, ..., s513, a1, ..., a513, f0, en, spk]]
+```
+where   
+`s_i` is (energy-normalized) spectral envelop magnitude (in log10) of the ith frequency bin,  
+`a_i` is the corresponding "aperiodicity" feature,   
+`f0` is the pitch (0 for unvoice frames),  
+`en` is the energy,  
+`spk` is the speaker index (0 - 9) and `s` is the `sp`.
+
+Note:
+  - The speaker identity `spk` was stored in `np.float32` but will be converted into `tf.int64` by the `reader` in `analysizer.py`.
+  - I shouldn't have stored the speaker identity per frame;
+    it was just for implementation simplicity. 
+
+<br/>
+
+
+
+
+
 
