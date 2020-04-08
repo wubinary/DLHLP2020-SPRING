@@ -19,7 +19,7 @@ PI = Variable(torch.Tensor([pi]).cuda(),requires_grad=False)
 
 LR = 1e-4
 EPOCH_VAE = 5
-EPOCH_VAWGAN =11
+EPOCH_VAWGAN = 11
 
 class ConcatDataset(torch.utils.data.Dataset):
     def __init__(self, *datasets):
@@ -54,10 +54,7 @@ class Trainer:
         x_logit,x_feature = self.D(who_feature)     
         xh,xh_sig_logit = self.G(z,who_label)#[256,128]#[256,1]     
         xh_logit,xh_feature = self.D(xh)#xh_logit[256,1]
-      
-      
-    
-    
+
     
         return dict(
             z = z,
@@ -75,16 +72,6 @@ class Trainer:
     def train(self):
         
         gan_loss = 50000
-        x_feature = torch.FloatTensor(-1, 1, 513, 1).cuda()#NHWC
-        x_label = torch.FloatTensor(self.batch_size).cuda()
-        y_feature = torch.FloatTensor(-1, 1, 513, 1).cuda()#NHWC
-        y_label = torch.FloatTensor(self.batch_size).cuda()
-
-        x_feature = Variable(x_feature)
-        x_label = Variable(x_label,requires_grad=False)
-        y_feature = Variable(y_feature)
-        y_label = Variable(y_label,requires_grad=False)
-
 
         optimD = optim.RMSprop([{'params':self.D.parameters()}], lr=LR)
         optimG = optim.RMSprop([{'params':self.G.parameters()}], lr=LR)
@@ -109,36 +96,26 @@ class Trainer:
                 
                
                 #Source
-                feature_1 = s_data[:,:513,:,:].permute(0,3,1,2)#NHWC ==> NCHW
-                label_1 = s_data[:,-1,:,:].view(len(s_data))
-               
-                x_feature.data.resize_(feature_1.size())
-                x_label.data.resize_(len(s_data))
-                
-                x_feature.data.copy_(feature_1)
-                x_label.data.copy_(label_1)
-              
-              
+                feature_1 = s_data[:,:513,:,:].permute(0,3,1,2).float() #NHWC ==> NCHW
+                label_1 = s_data[:,-1,:,:].view(len(s_data)).float()
+
+                x_feature = Variable(feature_1).cuda()
+                x_label = Variable(label_1,requires_grad=False).cuda()
+
                 s = self.circuit_loop(x_feature,x_label) 
                 
                 #Target
-                feature_2 = t_data[:,:513,:,:].permute(0,3,1,2)#NHWC ==> NCHW
-                label_2 = t_data[:,-1,:,:].view(len(t_data))
-               
-                y_feature.data.resize_(feature_2.size())
-                y_label.data.resize_(len(t_data))
-                
-                y_feature.data.copy_(feature_2)
-                y_label.data.copy_(label_2)
-              
+                feature_2 = t_data[:,:513,:,:].permute(0,3,1,2).float() #NHWC ==> NCHW
+                label_2 = t_data[:,-1,:,:].view(len(t_data)).float()
+
+                y_feature = Variable(feature_2).cuda()
+                y_label = Variable(label_2,requires_grad=False).cuda()
                 
                 t = self.circuit_loop(y_feature,y_label) 
                 
                 #Source 2 Target
                 s2t = self.circuit_loop(x_feature,y_label) 
         
-                
-                
                
                 loss = dict()
                 loss['conv_s2t'] = \
@@ -182,13 +159,6 @@ class Trainer:
                 obj_Gx.backward()
                 optimG.step()
                 
-                
-         
-                
-               
-                
-                
-               
           
                 print("Epoch:[%d|%d]\tIteration:[%d|%d]\tW: %.3f\tKL(Z): %.3f\tDis: %.3f" %(epoch+1,EPOCH_VAWGAN+EPOCH_VAE,index+1,len(Data),
                                                      loss['conv_s2t'],loss['KL(z)'],loss['Dis']  ))
@@ -196,34 +166,25 @@ class Trainer:
     
         for epoch in range(EPOCH_VAWGAN):
            
-            schedulerD.step()
-            schedulerG.step()
-            schedulerE.step()
             for index,(s_data,t_data) in enumerate(Data):       
                 
                 
                 #Source
-                feature_1 = s_data[:,:513,:,:].permute(0,3,1,2)#NHWC ==> NCHW
-                label_1 = s_data[:,-1,:,:].view(len(s_data))
-               
-                x_feature.data.resize_(feature_1.size())
-                x_label.data.resize_(len(s_data))
-                
-                x_feature.data.copy_(feature_1)
-                x_label.data.copy_(label_1)
+                feature_1 = s_data[:,:513,:,:].permute(0,3,1,2).float() #NHWC ==> NCHW
+                label_1 = s_data[:,-1,:,:].view(len(s_data)).float()
+
+                x_feature = Variable(feature_1).cuda()
+                x_label = Variable(label_1,requires_grad=False).cuda()
               
                 
                 #Target
-                feature_2 = t_data[:,:513,:,:].permute(0,3,1,2)#NHWC ==> NCHW
-                label_2 = t_data[:,-1,:,:].view(len(t_data))
-               
-                y_feature.data.resize_(feature_2.size())
-                y_label.data.resize_(len(t_data))
-                
-                y_feature.data.copy_(feature_2)
-                y_label.data.copy_(label_2)
+                feature_2 = t_data[:,:513,:,:].permute(0,3,1,2).float() #NHWC ==> NCHW
+                label_2 = t_data[:,-1,:,:].view(len(t_data)).float()
+
+                y_feature = Variable(feature_2).cuda()
+                y_label = Variable(label_2,requires_grad=False).cuda()
               
-                
+
                 t = dict() 
                 
                 #Source 2 Target
@@ -301,7 +262,7 @@ class Trainer:
             
                 if( epoch == EPOCH_VAWGAN-1 and index == (len(Data)-2)):
                     print('================= store model ==================')
-                    filename = './model/model_'+str(epoch+EPOCH_VAE+1)+'.pt'
+                    filename = './ckpt/model_'+str(epoch+EPOCH_VAE+1)+'.pt'
                     if not os.path.exists(os.path.dirname(filename)):
                         try:
                             os.makedirs(os.path.dirname(filename))
@@ -309,20 +270,17 @@ class Trainer:
                             print('error')
                             pass
                               
-                    torch.save(self,filename)
+                    torch.save({'encoder_state_dict':self.Encoder.state_dict(),
+                                'generator_state_dict':self.G.state_dict(),}
+                                ,filename)
                     print('=================Finish store model ==================')
-                    gan_loss=  obj_Gx 
-                
-                
-       
-                
-          
-           
-    
-      
-      
+                    gan_loss=  obj_Gx
             
-          
+            schedulerD.step()
+            schedulerG.step()
+            schedulerE.step() 
+                
+                
       
 
 def reconst_loss(x,xh):

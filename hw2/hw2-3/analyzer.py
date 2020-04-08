@@ -120,13 +120,13 @@ class Tanhize(object):
         return np.clip(x, 0., 1.) * 2. - 1.
 
     def backward_process(self, x):
-        print(x)
+        #print(x)
         x = (x * .5 + .5) 
-        print(x)
+        #print(x)
         
         x = torch.mul(x , Variable(torch.FloatTensor(self.xscale).cuda(),requires_grad=False))
         x = x + Variable(torch.FloatTensor(self.xmin).cuda(),requires_grad=False)
-        print(x)
+        #print(x)
         return x
 
 
@@ -172,7 +172,7 @@ def read(
             #print(feature.shape)
     
     #print(total_sp)
-    #print(total_speaker.shape)
+    print(len(total_speaker))
     total_sp_speaker = np.concatenate(total_sp_speaker, axis=0)
     #print('3: ',total_sp_speaker.shape)
     #total_speaker = np.concatenate(total_speaker, axis=0)
@@ -232,8 +232,8 @@ def read_whole_features(file_pattern, num_epochs=1):
 
 def pw2wav(features, feat_dim=513, fs=16000):
     ''' NOTE: Use `order='C'` to ensure Cython compatibility '''
-    print(type(features['sp']))
-    print(type(features['en']))
+    #print(type(features['sp']))
+    #print(type(features['en']))
     en = np.reshape(features['en'], [-1, 1])
     sp = np.power(10., features['sp'])
     sp = en * sp
@@ -272,8 +272,8 @@ def make_speaker_tsv(path):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='VAW-GAN analyzer.py')
-    parser.add_argument('--dir_to_wav', default='./dataset/vcc2016/wav', help='Dir to *.wav')
-    parser.add_argument('--dir_to_bin', default='./dataset/vcc2016/bin', help='Dir to output *.bin')
+    parser.add_argument('--dir_to_wav', default='../hw2-1/Corpus/wav', help='Dir to *.wav')
+    parser.add_argument('--dir_to_bin', default='./dataset/Corpus/bin', help='Dir to output *.bin')
     parser.add_argument('--fs', type=int, default=16000, help='Global sampling frequency')
     parser.add_argument('--f0_ceil', type=int, default=500, help='Global f0 ceilin')
     global args

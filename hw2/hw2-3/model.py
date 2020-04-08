@@ -68,7 +68,6 @@ class Encoder(nn.Module):
         #print(type(x))
         output = self.main(x)
         #print(output.shape)
-        #print('?????????????????????????????')
         output=output.view(-1, 768)#3*256
         z_mu = self.fc_mu(output)
         z_lv = self.fc_lv(output)
@@ -81,8 +80,8 @@ class G(nn.Module):
 
     def __init__(self):
         super(G, self).__init__()
-        
-        self.Embedding = nn.Linear(10,128,bias = False)
+        ### modify
+        self.Embedding = nn.Linear(2,128,bias = False)
         
         self.fc1 = nn.Linear(128, 171, bias = True)
         self.fc2 = nn.Linear(128, 171, bias = True)
@@ -111,10 +110,11 @@ class G(nn.Module):
         self.Tanh = nn.Tanh()
 
     def forward(self, z,y):
-     
-        person = torch.zeros(y.shape[0],10)
+        
+        ### modify
+        person = torch.zeros(y.shape[0],2)
         for i in range(y.shape[0]):
-            for j in range(10):
+            for j in range(2):
                 if(j==y[i]):
                     person[i][j] = 1
                     break  
