@@ -1,6 +1,12 @@
 
 *.pth
+*.pt
 *.pyc
+*.h5 
 hw1/log/
+
+hw2/hw2-1/.ipynb_checkpoints
+hw2/hw2-1/__pycache__
 hw2/hw2-2/data/
 hw2/hw2-2/starganvc/
+
