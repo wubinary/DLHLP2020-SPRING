@@ -16,17 +16,21 @@ def _run_train(autoencoder, criterion, opt, dataloader):
         spectrogram = spectrogram.permute(0,2,1).cuda()
         person = person.cuda()
         
-        output = autoencoder(spectrogram, person)
+        latent, output = autoencoder(spectrogram, person)
+        latent2 = autoencoder.encoder(output)
         
-        loss = criterion(spectrogram, output*spectrogram/spectrogram) #SI-SDR loss
+        loss = 0
+        loss += criterion(spectrogram, output*spectrogram/spectrogram) #SI-SDR reconstruct loss
+        loss += 0.1*criterion(latent, latent2) # content loss
         loss.backward()
+
+        opt.step()
         
         total_loss += loss.item()*b
         print("\t [{}/{}] train loss:{:.4f}".format(index+1,
                                               len(dataloader),
                                               loss.item()), 
                                           end='  \r')
-        opt.step()
         
     return total_loss
 
@@ -42,10 +46,12 @@ def _run_eval(autoencoder, criterion, dataloader):
             spectrogram = spectrogram.permute(0,2,1).cuda()
             person = person.cuda()
         
-            output = autoencoder(spectrogram, person)
+            latent, output = autoencoder(spectrogram, person)
+            latent2 = autoencoder.encoder(output)
 
-            loss = criterion(spectrogram, output*spectrogram/spectrogram) #SI-SDR loss
-            #loss = criterion(spectrogram, output)
+            loss = 0
+            loss += criterion(spectrogram, output*spectrogram/spectrogram) #SI-SDR reconstruct loss
+            loss += 0.1*criterion(latent, latent2) # content loss
 
             total_loss += loss.item()*b
             print("\t [{}/{}] valid loss:{:.4f}".format(index+1,
@@ -80,3 +86,7 @@ def train(args, train_dataloader, valid_dataloader):
                         f"{save_path}_autoencoder_.pt")
             print(f'\t [Info] save weights at {save_path}')
         print('-----------------------------------------------')
+
+        for param_group in opt.param_groups:
+            param_group['lr'] = param_group['lr'] / 1
+

@@ -56,7 +56,7 @@ def RNN(inp, layer):
     return out_rnn
 
 class Encoder(nn.Module):
-    def __init__(self, c_in=513, c_h1=128, c_h2=128, c_h3=128, ns=0.2, dp=0.5):
+    def __init__(self, c_in=513, c_h1=150, c_h2=150, c_h3=128, ns=0.2, dp=0.5):
         super(Encoder, self).__init__()
         self.ns = ns
         self.conv1s = nn.ModuleList(
@@ -158,7 +158,7 @@ def append_emb(emb, expand_size, output):
     return output
 
 class Decoder(nn.Module):
-    def __init__(self, c_in=128, c_out=513, c_h=128, c_a=8, emb_size=128, ns=0.2):
+    def __init__(self, c_in=150, c_out=513, c_h=150, c_a=2, emb_size=128, ns=0.2):
         super(Decoder, self).__init__()
         self.ns = ns
         self.conv1 = nn.Conv1d(c_in, 2*c_h, kernel_size=3)
@@ -265,7 +265,7 @@ class Autoencoder(nn.Module):
     def forward(self, x, c):        
         latent = self.encoder(x)
         output = self.decoder(latent, c)
-        return output 
+        return latent, output
     
     def interpolate(self, x, c1, c2):
         latent = self.encoder(x)
