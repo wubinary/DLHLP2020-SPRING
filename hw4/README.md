@@ -8,5 +8,6 @@ https://docs.google.com/document/d/1QMZdZ71stERpjLICN409mL2fcH04lPZ_qvmshRRABw0/
 
 ## 4-1 github
 https://github.com/aapp1420/BERT-analysis
-
+### fix apex bug
+https://github.com/NVIDIA/apex/issues/116
 
