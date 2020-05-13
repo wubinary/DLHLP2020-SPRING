@@ -1,8 +1,8 @@
 CUDA_VISIBLE_DEVICES=0 python3 run_xnli.py --data_dir /media/D/DLHLP/hw4 \
     --model_type bert \
     --model_name_or_path bert-base-chinese \
-    --output_dir ../output/try \
-    --cache_dir ../dataset_cache \
+    --output_dir /media/D/DLHLP/hw4/hw4-1/output/ \
+    --cache_dir /media/D/DLHLP/hw4/hw4-1/dataset_cache \
     --do_train \
     --do_eval \
     --evaluate_during_training \
