@@ -23,6 +23,7 @@ import glob
 import logging
 import os
 import random
+import json 
 
 import numpy as np
 import torch
@@ -124,6 +125,7 @@ def train(args, train_dataset, model, tokenizer):
     model.zero_grad()
     train_iterator = trange(int(args.num_train_epochs), desc="Epoch", disable=args.local_rank not in [-1, 0])
     set_seed(args)  # Added here for reproductibility (even between python 2 and 3)
+    history = []
     for _ in train_iterator:
         epoch_iterator = tqdm(train_dataloader, desc="Iteration", disable=args.local_rank not in [-1, 0])
         for step, batch in enumerate(epoch_iterator):
@@ -169,6 +171,10 @@ def train(args, train_dataset, model, tokenizer):
                     tb_writer.add_scalar('lr', scheduler.get_lr()[0], global_step)
                     tb_writer.add_scalar('loss', (tr_loss - logging_loss)/args.logging_steps, global_step)
                     logging_loss = tr_loss
+
+                    history.append({'step':global_step, 'loss':logging_loss,'acc':results['acc']})
+                    with open(args.output_dir+'/logging.txt', 'w') as ff:
+                       json.dump(history, ff, indent=4) 
 
                 if args.local_rank in [-1, 0] and args.save_steps > 0 and global_step % args.save_steps == 0:
                     # Save model checkpoint
