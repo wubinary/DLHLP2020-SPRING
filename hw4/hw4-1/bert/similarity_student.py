@@ -1,9 +1,9 @@
-import numpy as np 
-import pickle as pk 
-import torch 
+import numpy as np
+import pickle as pk
+import torch
 import random
-import pdb 
-import matplotlib.pyplot as plt 
+import pdb
+import matplotlib.pyplot as plt
 from collections import Counter
 from tqdm import tqdm
 from sklearn.metrics.pairwise import cosine_similarity
@@ -12,11 +12,11 @@ from sklearn.decomposition import PCA, TruncatedSVD
 
 def load_data(path):
     data = pk.load(open(path,"rb"))
-    return data 
+    return data
 
 def preprocessing(data,layer_index):
     x_layer = []
-    # generate emnbedding data of specify layer on the saved data 
+    # generate emnbedding data of specify layer on the saved data
     for x in data:
         for word_index in range(x["input_ids"].shape[0]):
             word = x["input_ids"][word_index]
@@ -28,7 +28,7 @@ def preprocessing(data,layer_index):
 
 def preprocessing_intra_sentence(data,layer_index):
     x_layer = []
-    # generate data of specify layer 
+    # generate data of specify layer
     for x in data:
         sentence_embeddings = []
         count = 0
@@ -36,44 +36,45 @@ def preprocessing_intra_sentence(data,layer_index):
             word = x["input_ids"][word_index]
             if word == 101 or word == 0 or word == 102:
                 continue
+            embedding = x["layer_"+str(layer_index)][word_index]
+            sentence_embeddings += [embedding]
             count += 1
+        sentence_embedding = np.mean(sentence_embeddings,axis=0)
         for word_index in range(x["input_ids"].shape[0]):
             word = x["input_ids"][word_index]
-            
+
             #skip [PAD], [SEP], [CLS]
             if word == 101 or word == 0 or word == 102:
                 continue
             embedding = x["layer_"+str(layer_index)][word_index]
-            sentence_embeddings += [embedding]
-            sentence_embedding = np.mean(sentence_embeddings,axis=0)
             x_layer += [(word, embedding, sentence_embedding,count)]
     return x_layer
 
 #Question 2 - main
 def Anisotropy_function(version):
     """
-    version have three option == "self-sim" , "intra-sentence-sim", "MEV(BONUS)" 
+    version have three option == "self-sim" , "intra-sentence-sim", "MEV(BONUS)"
     """
     # TA: You may need to modify to your pretrained data path
     samples =load_data("xnli-pretrained-example-data.p")
 
     #Pretrained version
-    record = []   
-    
+    record = []
+
     for i in range(0, 13):
-        cos = Anisotropy(samples,i,version) 
+        cos = Anisotropy(samples,i,version)
         record += [(i,cos)]
 
     plt.plot([x[0] for x in record], [y[1] for y in record], "o-", label="pretrained Model" )
 
-    
+
     #Finetune version
-    record = []  
+    record = []
     #You may need to modify to your finetune data path
     samples = load_data("xnli-finetune-example-data.p")
-    
+
     for i in range(0, 13):
-        cos = Anisotropy(samples,i,version) 
+        cos = Anisotropy(samples,i,version)
         record += [(i,cos)]
 
     plt.plot([x[0] for x in record], [y[1] for y in record], "o-", label="Finetuned Model" )
@@ -81,7 +82,7 @@ def Anisotropy_function(version):
     plt.savefig("picture/"+version+"_Anisotropy.png")
     print("finish anisotropy!")
     plt.clf()
-    return 
+    return
 
 # Question 2
 def Anisotropy(data,layer_index,version):
@@ -99,64 +100,65 @@ def Anisotropy(data,layer_index,version):
         x_layer = preprocessing(data,layer_index)
         # calculate anisotropy on MEV
         mean = MEV_Anisotropy(x_layer)
-        
-    return mean 
+
+    return mean
 
 # Question 2
 def cosine_similarity_Anisotropy(two_words):
-    
-    cos = None
+
     """
     Todo: return two word cosine similarity
     """
+    print(two_words[0][1].shape) # (word, embedding)
+    cos = cosine_similarity(two_words[0][1],two_words[1][1])
     return cos
 
 # Question 3 -main - IntraSentenceSimilarity
 def IntraSentenceSimilarity_function():
     # TA: You may need to modify to your pretrained data path
     samples =load_data("xnli-pretrained-example-data.p")
-    
+
     #Pretrained version
-    record = []   
+    record = []
     for i in tqdm(range(0, 13)):
-       cos = IntraSentenceSimilarity(samples,i) 
+       cos = IntraSentenceSimilarity(samples,i)
        record += [(i,cos)]
     plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="pretrained Model" )
-    
+
     #finetune version
-    record = []  
+    record = []
     #You may need to modify to your finetune data path
     samples = load_data("xnli-finetune-example-data.p")
     for i in tqdm(range(0, 13)):
-       cos = IntraSentenceSimilarity(samples,i) 
+       cos = IntraSentenceSimilarity(samples,i)
        record += [(i,cos)]
     plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="finetuned Model" )
     plt.legend(loc='upper right')
     plt.savefig("picture/Intra-sentence-similarity.png")
     print("finish Intra-sentence-similarity!")
     plt.clf()
-    return 
+    return
 # Question 3 - IntraSentenceSimilarity
 def IntraSentenceSimilarity(data,layer_index):
-    
-    x_layer = preprocessing_intra_sentence(data,layer_index)
+
+    x_layer = preprocessing_intra_sentence(data,layer_index) # (word, embedding, sentence_embedding,count)
 
     average_cos = []
     for x in x_layer:
         """
         Todo: calculate intra-sentence cosine similarity
         """
-        cos = 0
+        cos = cosine_similarity(x[1],x[2])
         average_cos += [ np.mean(cos)/x[3] ]
     mean = sum(average_cos) / len(data)
-    return mean 
+    return mean
 
 # Question 3 - main SelfSimilarity
 def SelfSimilarity_function():
-    
+
     # TA: You may need to modify to your pretrained data path
     samples = load_data("xnli-pretrained-example-data.p")
-    
+
     #Pretrained version
     record = []
     for i in range(0,13):
@@ -164,9 +166,9 @@ def SelfSimilarity_function():
         layer_self_similarity = calculate_self_similarity("pretrained",i)
         record += [(i,layer_self_similarity)]
     plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="pretrained Model" )
-    
+
     #Finetuned version
-    record = []  
+    record = []
 
     #You may need to modify to your finetune data path
     samples = load_data("xnli-finetune-example-data.p")
@@ -179,7 +181,7 @@ def SelfSimilarity_function():
     plt.savefig("picture/Self-similarity.png")
     print("finish Self-similarity!")
     plt.clf()
-    return 
+    return
 
 
 # Question 3 - self_similarity
@@ -189,28 +191,29 @@ def calculate_self_similarity(function,layer_index):
     for key in tqdm(data.keys()):
         same_word_embeddings=data[key]
         average_cos = []
-        mean=0
-
         """
-        
         Todo:
         calculate the mean cosine similarity of same word but different context
         Hint: You can write new function to do this or sklearn cosine similarity
-        
+
         """
-        
-        total_average_cos += [np.mean(mean)]
+        for i in range(len(same_word_embeddings)):
+            for j in range(i+1,len(same_word_embeddings)):
+                average_cos +=  [ cosine_similarity(same_word_embeddings[i],same_word_embeddings[j]) ]
+        average_cos = np.array(average_cos)
+        mean = np.mean(average_cos)
+        total_average_cos += [ mean ]
     return np.mean(np.array(total_average_cos))
 
 # Question 3
 def self_similarity(data,layer_index,function):
-    x_layer = preprocessing(data,layer_index)
-    
+    x_layer = preprocessing(data,layer_index) # (word, embedding)
+
     words = [x[0] for x in x_layer]
     stochastic =Counter(words)
     remove_key = []
 
-    # if word appear less than 2 times in example dataset, 
+    # if word appear less than 2 times in example dataset,
     # we remove it to calculate self-similarity
 
     for key in stochastic.keys():
@@ -218,7 +221,7 @@ def self_similarity(data,layer_index,function):
             remove_key += [key]
     for key in remove_key:
         del stochastic[key]
-    
+
     select_numbers = stochastic.keys()
     # print(len(select_numbers))
 
@@ -240,55 +243,55 @@ def AnisotropyAdjustedSelfSimilarity_function():
     #Pretrained version
     record = []
     for i in range(0, 13):
-        cos = Anisotropy(samples,i,version="self-sim") 
+        cos = Anisotropy(samples,i,version="self-sim")
         self_similarity(samples,i,"pretrained")
         layer_self_similarity = calculate_self_similarity("pretrained",i)
         record += [(i,layer_self_similarity - cos)]
     plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="pretrained Model" )
 
     #finetune version
-    record = []  
+    record = []
     #You may need to modify to your finetune data path
     samples = load_data("xnli-finetune-example-data.p")
     for i in range(0, 13):
-        cos = Anisotropy(samples,i,version="self-sim") 
+        cos = Anisotropy(samples,i,version="self-sim")
         self_similarity(samples,i,"finetune")
         layer_self_similarity = calculate_self_similarity("finetune",i)
         record += [(i,layer_self_similarity - cos)]
     plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="finetuned Model" )
-    plt.legend(loc='upper right')    
+    plt.legend(loc='upper right')
     plt.savefig("picture/Anisotropy-adjusted-self-similarity.png")
     print("finish Anisotropy-adjusted-self-similarity!")
     plt.clf()
-    return 
+    return
 
 # Question 4 -main - AnisotropyAdjustedIntraSentenceSimilarity
 def AnisotropyAdjustedIntraSentenceSimilarity_function():
     # TA: You may need to modify to your pretrained data path
     samples =load_data("xnli-pretrained-example-data.p")
-    
+
     #Pretrained version
-    record = []   
+    record = []
     for i in tqdm(range(0, 13)):
-       cos = Anisotropy(samples,i,version="intra-sentence-sim") 
-       IntraSentenceSimilarity_cos = IntraSentenceSimilarity(samples,i) 
+       cos = Anisotropy(samples,i,version="intra-sentence-sim")
+       IntraSentenceSimilarity_cos = IntraSentenceSimilarity(samples,i)
        record += [(i,IntraSentenceSimilarity_cos - cos)]
     plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="pretrained Model" )
-    
-    #Finetuned version    
-    record = []  
+
+    #Finetuned version
+    record = []
     #You may need to modify to your finetune data path
     samples = load_data("xnli-finetune-example-data.p")
     for i in tqdm(range(0, 13)):
-       cos = Anisotropy(samples,i,version="intra-sentence-sim") 
-       IntraSentenceSimilarity_cos = IntraSentenceSimilarity(samples,i) 
+       cos = Anisotropy(samples,i,version="intra-sentence-sim")
+       IntraSentenceSimilarity_cos = IntraSentenceSimilarity(samples,i)
        record += [(i,IntraSentenceSimilarity_cos - cos)]
     plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="finetuned Model" )
     plt.legend(loc='upper right')
     plt.savefig("picture/Anistropy-adjusted-Intra-sentence-similarity.png")
     print("finish Anistropy-adjusted-Intra-sentence-similarity!")
     plt.clf()
-    return 
+    return
 
 
 
@@ -306,7 +309,7 @@ def MEV(function,layer_index):
     return np.mean(np.array(total_MEV))
 
 
-#Bonus - 1: 
+#Bonus - 1:
 def MEV_Anisotropy(data):
     total_MEV = []
     all_data = []
@@ -324,16 +327,16 @@ def MEV_Anisotropy(data):
 ### Bonus - 2:
 def MaximumExplainableVariance_function():
     samples = load_data("xnli-pretrained-example-data.p")
-    
+
     #Pretrained version
     record = []
     for i in range(0,13):
         layer_MEV = MEV("pretrained",i)
         record += [(i,layer_MEV)]
     plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="pretrained Model" )
-    
+
     #Finetuned version
-    record = []  
+    record = []
     #You may need to modify to your finetune data path
     samples = load_data("xnli-finetune-example-data.p")
     for i in range(0, 13):
@@ -344,12 +347,12 @@ def MaximumExplainableVariance_function():
     plt.savefig("picture/Maximum-explainable-variance.png")
     print("finish Maximum-explainable-variance!")
     plt.clf()
-    return 
+    return
 
 ### Bonus - 3:
 def AnisotropyAdjustedMEV_function():
     samples = load_data("xnli-pretrained-example-data.p")
-    
+
     #Pretrained version
     record = []
     for i in range(0,13):
@@ -357,9 +360,9 @@ def AnisotropyAdjustedMEV_function():
         mean_MEV = Anisotropy(samples,i,version="MEV")
         record += [(i,layer_MEV- mean_MEV)]
     plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="pretrained Model" )
-    
+
     #finetune version
-    record = []  
+    record = []
     #You may need to modify to your finetune data path
     samples = load_data("xnli-finetune-example-data.p")
     for i in range(0, 13):
@@ -371,14 +374,14 @@ def AnisotropyAdjustedMEV_function():
     plt.savefig("picture/Adjusted-Maximum-explainable-variance.png")
     print("finish Adjusted Maximum-explainable-variance!")
     plt.clf()
-    return 
+    return
 
 if __name__ == "__main__":
-    
+
     #Question 2
     Anisotropy_function(version="self-sim")
     Anisotropy_function(version="intra-sentence-sim")
-    
+
     #Question 3
     SelfSimilarity_function()
     IntraSentenceSimilarity_function()
@@ -397,4 +400,4 @@ if __name__ == "__main__":
     AnisotropyAdjustedMEV_function()
 
 
-    
+
