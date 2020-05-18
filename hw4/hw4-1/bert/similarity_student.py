@@ -199,7 +199,7 @@ def calculate_self_similarity(function,layer_index):
         """
         for i in range(len(same_word_embeddings)):
             for j in range(i+1,len(same_word_embeddings)):
-                average_cos +=  [ cosine_similarity(same_word_embeddings[i],same_word_embeddings[j]) ]
+                average_cos +=  [ cosine_similarity(same_word_embeddings[i].reshape(1,-1),same_word_embeddings[j].reshape(1,-1)) ]
         average_cos = np.array(average_cos)
         mean = np.mean(average_cos)
         total_average_cos += [ mean ]
