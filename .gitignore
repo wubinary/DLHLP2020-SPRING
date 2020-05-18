@@ -3,6 +3,8 @@
 *.pt
 *.pyc
 *.h5 
+*.p
+*.zip 
 hw1/log/
 
 hw2/hw2-1/Corpus/
