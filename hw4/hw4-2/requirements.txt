@@ -1,0 +1,8 @@
+Cython
+seaborn
+scipy
+PyYAML
+numpy
+h5py
+tqdm
+transformers

@@ -1,0 +1,14 @@
+model:
+  hidden_dim: 768 # hidden dim
+  model_type: BERT-disk # BERT-disk, ELMo-disk, 
+  use_disk: False
+  model_layer: 8 # BERT-base: {1,...,12}; ELMo: {1,2,3}
+probe:
+  task_name: demo
+  maximum_rank: 128
+  psd_parameters: True
+  depth_params_path: results/parse-depth-8/predictor_8_parse-depth.params
+  distance_params_path: results/parse-distance-8/predictor_8_parse-distance.params
+reporting:
+  root: seg_results
+
