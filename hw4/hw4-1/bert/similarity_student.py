@@ -109,8 +109,8 @@ def cosine_similarity_Anisotropy(two_words):
     """
     Todo: return two word cosine similarity
     """
-    print(two_words[0][1].shape) # (word, embedding)
-    cos = cosine_similarity(two_words[0][1],two_words[1][1])
+    #print(two_words[0][1].shape) # (word, embedding)
+    cos = cosine_similarity(two_words[0][1].reshape(1,-1),two_words[1][1].reshape(1,-1))
     return cos
 
 # Question 3 -main - IntraSentenceSimilarity
@@ -391,13 +391,13 @@ if __name__ == "__main__":
     AnisotropyAdjustedSelfSimilarity_function()
 
     #Bonus
-    Anisotropy_function(version="MEV")
+    #Anisotropy_function(version="MEV")
 
     #Bonus
-    MaximumExplainableVariance_function()
+    #MaximumExplainableVariance_function()
 
     #Bonus
-    AnisotropyAdjustedMEV_function()
+    #AnisotropyAdjustedMEV_function()
 
 
 
