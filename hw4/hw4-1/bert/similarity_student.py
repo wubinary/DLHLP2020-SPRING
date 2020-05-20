@@ -65,7 +65,7 @@ def Anisotropy_function(version):
         cos = Anisotropy(samples,i,version)
         record += [(i,cos)]
 
-    plt.plot([x[0] for x in record], [y[1] for y in record], "o-", label="pretrained Model" )
+    plt.plot([x[0] for x in record], [y[1] for y in record], "o-", label="pretrained Model", color="purple")
 
 
     #Finetune version
@@ -77,7 +77,7 @@ def Anisotropy_function(version):
         cos = Anisotropy(samples,i,version)
         record += [(i,cos)]
 
-    plt.plot([x[0] for x in record], [y[1] for y in record], "o-", label="Finetuned Model" )
+    plt.plot([x[0] for x in record], [y[1] for y in record], "o-", label="Finetuned Model", color="green")
     plt.legend(loc='upper right')
     plt.savefig("picture/"+version+"_Anisotropy.png")
     print("finish anisotropy!")
@@ -123,7 +123,7 @@ def IntraSentenceSimilarity_function():
     for i in tqdm(range(0, 13)):
        cos = IntraSentenceSimilarity(samples,i)
        record += [(i,cos)]
-    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="pretrained Model" )
+    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="pretrained Model", color="purple")
 
     #finetune version
     record = []
@@ -132,7 +132,7 @@ def IntraSentenceSimilarity_function():
     for i in tqdm(range(0, 13)):
        cos = IntraSentenceSimilarity(samples,i)
        record += [(i,cos)]
-    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="finetuned Model" )
+    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="finetuned Model", color="green" )
     plt.legend(loc='upper right')
     plt.savefig("picture/Intra-sentence-similarity.png")
     print("finish Intra-sentence-similarity!")
@@ -148,7 +148,7 @@ def IntraSentenceSimilarity(data,layer_index):
         """
         Todo: calculate intra-sentence cosine similarity
         """
-        cos = cosine_similarity(x[1],x[2])
+        cos = cosine_similarity(x[1].reshape(1,-1),x[2].reshape(1,-1))
         average_cos += [ np.mean(cos)/x[3] ]
     mean = sum(average_cos) / len(data)
     return mean
@@ -165,8 +165,9 @@ def SelfSimilarity_function():
         self_similarity(samples,i,"pretrained")
         layer_self_similarity = calculate_self_similarity("pretrained",i)
         record += [(i,layer_self_similarity)]
-    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="pretrained Model" )
+    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="pretrained Model", color="purple" )
 
+    print('finish pretrained SelfSimilarity_function')
     #Finetuned version
     record = []
 
@@ -176,7 +177,7 @@ def SelfSimilarity_function():
         self_similarity(samples,i,"finetune")
         layer_self_similarity = calculate_self_similarity("finetune",i)
         record += [(i,layer_self_similarity)]
-    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="finetuned Model" )
+    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="finetuned Model", color="green" )
     plt.legend(loc='upper right')
     plt.savefig("picture/Self-similarity.png")
     print("finish Self-similarity!")
@@ -247,7 +248,7 @@ def AnisotropyAdjustedSelfSimilarity_function():
         self_similarity(samples,i,"pretrained")
         layer_self_similarity = calculate_self_similarity("pretrained",i)
         record += [(i,layer_self_similarity - cos)]
-    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="pretrained Model" )
+    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="pretrained Model", color="purple")
 
     #finetune version
     record = []
@@ -258,7 +259,7 @@ def AnisotropyAdjustedSelfSimilarity_function():
         self_similarity(samples,i,"finetune")
         layer_self_similarity = calculate_self_similarity("finetune",i)
         record += [(i,layer_self_similarity - cos)]
-    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="finetuned Model" )
+    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="finetuned Model", color="green")
     plt.legend(loc='upper right')
     plt.savefig("picture/Anisotropy-adjusted-self-similarity.png")
     print("finish Anisotropy-adjusted-self-similarity!")
@@ -276,7 +277,7 @@ def AnisotropyAdjustedIntraSentenceSimilarity_function():
        cos = Anisotropy(samples,i,version="intra-sentence-sim")
        IntraSentenceSimilarity_cos = IntraSentenceSimilarity(samples,i)
        record += [(i,IntraSentenceSimilarity_cos - cos)]
-    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="pretrained Model" )
+    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="pretrained Model", color="purple")
 
     #Finetuned version
     record = []
@@ -286,7 +287,7 @@ def AnisotropyAdjustedIntraSentenceSimilarity_function():
        cos = Anisotropy(samples,i,version="intra-sentence-sim")
        IntraSentenceSimilarity_cos = IntraSentenceSimilarity(samples,i)
        record += [(i,IntraSentenceSimilarity_cos - cos)]
-    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="finetuned Model" )
+    plt.plot([x[0] for x in record], [y[1] for y in record], "o-",label="finetuned Model", color="green" )
     plt.legend(loc='upper right')
     plt.savefig("picture/Anistropy-adjusted-Intra-sentence-similarity.png")
     print("finish Anistropy-adjusted-Intra-sentence-similarity!")
@@ -379,11 +380,11 @@ def AnisotropyAdjustedMEV_function():
 if __name__ == "__main__":
 
     #Question 2
-    Anisotropy_function(version="self-sim")
-    Anisotropy_function(version="intra-sentence-sim")
+    #Anisotropy_function(version="self-sim")
+    #Anisotropy_function(version="intra-sentence-sim")
 
     #Question 3
-    SelfSimilarity_function()
+    #SelfSimilarity_function()
     IntraSentenceSimilarity_function()
 
     #Question 4

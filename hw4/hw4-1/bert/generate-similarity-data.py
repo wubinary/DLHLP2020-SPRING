@@ -121,9 +121,9 @@ def evaluate(args, model, tokenizer, prefix=""):
                     new_dataset += [copy.deepcopy(sample)]
 
     # if u want to extract pretrained model embedding use name: pretrained-example-data.p  and comment line 126
-    pickle.dump(new_dataset,open("xnli-pretrained-example-data.p","wb"))
+    #pickle.dump(new_dataset,open("xnli-pretrained-example-data.p","wb"))
     # if u want to extract pretrained model embedding use name: finetune-example-data.p and comment line 124
-    # pickle.dump(new_dataset,open("xnli-finetune-example-data.p","wb"))
+    pickle.dump(new_dataset,open("xnli-finetune-example-data.p","wb"))
 
     return 
 
