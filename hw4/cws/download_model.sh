@@ -19,8 +19,8 @@ download_from_gdrive() {
 
 ###############################################
 ################   my_cws_bert.pt   ###############
-if [ ! -f "OUT_DIR/my_cws_bert.pt" ]; then
-	echo " [Info] download my_cws_bert.py model "
-	download_from_gdrive 1cux6iBOmD3FBaDFti2bbmRNPvFENrnCz OUT_DIR/my_cws_bert.pt  
-fi 
+#if [ ! -f "OUT_DIR/my_cws_bert.pt" ]; then
+echo " [Info] download my_cws_bert.py model "
+download_from_gdrive 14TiTTl_LkjWsh2C2JXq9oVxMtZcJnSh4 OUT_DIR/my_cws_bert.pt  
+#fi 
 
