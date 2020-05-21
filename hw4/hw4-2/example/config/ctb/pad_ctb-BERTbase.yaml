@@ -25,16 +25,16 @@ dataset:
   - embeddings
 model:
   hidden_dim: 768
-  model_layer: 0
+  model_layer: 11
   model_type: BERT-disk
   use_disk: true
 probe:
   diagonal: false
   maximum_rank: 128
-  params_path: predictor_0_parse-distance.params
+  params_path: predictor_11_parse-depth.params
   psd_parameters: true
-  task_name: parse-distance
-  task_signature: word_pair
+  task_name: parse-depth
+  task_signature: word
 probe_training:
   epochs: 30
   loss: L1
@@ -49,5 +49,5 @@ reporting:
     train_path: train.predictions
   reporting_methods:
   - spearmanr
-  - uuas
+  - root_acc
   root: results
