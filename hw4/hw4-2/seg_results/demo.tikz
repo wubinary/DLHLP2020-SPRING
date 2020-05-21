@@ -1,0 +1,366 @@
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  現在\& 防控\& 還\& 不\& 能\& 麻痹\& ，\& 還是\& 不\& 要\& 進行\& 過\& 多\& 的\& 聚集\& 活動\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{15}{16}{.}
+\depedge[edge style={red!60!}, edge below]{11}{16}{.}
+\depedge[edge style={red!60!}, edge below]{9}{10}{.}
+\depedge[edge style={red!60!}, edge below]{12}{13}{.}
+\depedge[edge style={red!60!}, edge below]{13}{14}{.}
+\depedge[edge style={red!60!}, edge below]{10}{11}{.}
+\depedge[edge style={red!60!}, edge below]{3}{4}{.}
+\depedge[edge style={red!60!}, edge below]{11}{13}{.}
+\depedge[edge style={red!60!}, edge below]{7}{17}{.}
+\depedge[edge style={red!60!}, edge below]{4}{6}{.}
+\depedge[edge style={red!60!}, edge below]{5}{6}{.}
+\depedge[edge style={red!60!}, edge below]{2}{6}{.}
+\depedge[edge style={red!60!}, edge below]{1}{2}{.}
+\depedge[edge style={red!60!}, edge below]{8}{11}{.}
+\depedge[edge style={red!60!}, edge below]{3}{17}{.}
+\depedge[edge style={red!60!}, edge below]{3}{8}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  希望\& 同\& 各\& 方\& 一道\& ，\& 繪製\& 「\& 精甚\& 」\& 細膩\& 的\& 工筆畫 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{7}{13}{.}
+\depedge[edge style={red!60!}, edge below]{1}{7}{.}
+\depedge[edge style={red!60!}, edge below]{3}{4}{.}
+\depedge[edge style={red!60!}, edge below]{2}{5}{.}
+\depedge[edge style={red!60!}, edge below]{1}{6}{.}
+\depedge[edge style={red!60!}, edge below]{1}{5}{.}
+\depedge[edge style={red!60!}, edge below]{9}{10}{.}
+\depedge[edge style={red!60!}, edge below]{9}{11}{.}
+\depedge[edge style={red!60!}, edge below]{11}{12}{.}
+\depedge[edge style={red!60!}, edge below]{2}{4}{.}
+\depedge[edge style={red!60!}, edge below]{11}{13}{.}
+\depedge[edge style={red!60!}, edge below]{8}{9}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  不\& 要\& 搞\& 奇奇怪怪\& 的\& 建築\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{1}{2}{.}
+\depedge[edge style={red!60!}, edge below]{3}{6}{.}
+\depedge[edge style={red!60!}, edge below]{2}{3}{.}
+\depedge[edge style={red!60!}, edge below]{3}{4}{.}
+\depedge[edge style={red!60!}, edge below]{3}{7}{.}
+\depedge[edge style={red!60!}, edge below]{5}{6}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  沒有\& 可以\& 奉為\& 金科律玉\& 的\& 教科書\& ，\& 也\& 沒有\& 可以\& 對\& 人民\& 頤使氣指\& 的\& 教師爺\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{1}{9}{.}
+\depedge[edge style={red!60!}, edge below]{6}{15}{.}
+\depedge[edge style={red!60!}, edge below]{3}{4}{.}
+\depedge[edge style={red!60!}, edge below]{9}{10}{.}
+\depedge[edge style={red!60!}, edge below]{2}{10}{.}
+\depedge[edge style={red!60!}, edge below]{6}{7}{.}
+\depedge[edge style={red!60!}, edge below]{9}{15}{.}
+\depedge[edge style={red!60!}, edge below]{11}{12}{.}
+\depedge[edge style={red!60!}, edge below]{4}{13}{.}
+\depedge[edge style={red!60!}, edge below]{12}{13}{.}
+\depedge[edge style={red!60!}, edge below]{8}{9}{.}
+\depedge[edge style={red!60!}, edge below]{2}{3}{.}
+\depedge[edge style={red!60!}, edge below]{6}{16}{.}
+\depedge[edge style={red!60!}, edge below]{5}{14}{.}
+\depedge[edge style={red!60!}, edge below]{5}{6}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  天行\& 健\& ，\& 君子\& 以\& 不\& 強自……\& 自強不息\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{5}{8}{.}
+\depedge[edge style={red!60!}, edge below]{4}{8}{.}
+\depedge[edge style={red!60!}, edge below]{5}{7}{.}
+\depedge[edge style={red!60!}, edge below]{6}{7}{.}
+\depedge[edge style={red!60!}, edge below]{1}{4}{.}
+\depedge[edge style={red!60!}, edge below]{1}{9}{.}
+\depedge[edge style={red!60!}, edge below]{2}{3}{.}
+\depedge[edge style={red!60!}, edge below]{1}{2}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  我\& 背\& 過\& 《\& 新華\& 字典\& 》 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{2}{3}{.}
+\depedge[edge style={red!60!}, edge below]{1}{2}{.}
+\depedge[edge style={red!60!}, edge below]{5}{6}{.}
+\depedge[edge style={red!60!}, edge below]{4}{6}{.}
+\depedge[edge style={red!60!}, edge below]{6}{7}{.}
+\depedge[edge style={red!60!}, edge below]{2}{7}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  三\& 隻\& 手\& 合力\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{3}{4}{.}
+\depedge[edge style={red!60!}, edge below]{4}{5}{.}
+\depedge[edge style={red!60!}, edge below]{1}{2}{.}
+\depedge[edge style={red!60!}, edge below]{2}{3}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  在\& 人民\& 面前\& ，\& 我們\& 永遠\& 是\& 小學生\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{6}{7}{.}
+\depedge[edge style={red!60!}, edge below]{1}{3}{.}
+\depedge[edge style={red!60!}, edge below]{7}{8}{.}
+\depedge[edge style={red!60!}, edge below]{5}{7}{.}
+\depedge[edge style={red!60!}, edge below]{4}{7}{.}
+\depedge[edge style={red!60!}, edge below]{7}{9}{.}
+\depedge[edge style={red!60!}, edge below]{2}{3}{.}
+\depedge[edge style={red!60!}, edge below]{1}{7}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  別\& 看\& 你\& 今天\& 鬧\& 得\& 歡\& ，\& 小心\& 今後\& 拉\& 清單\& ，\& 這\& 都\& 得\& 應驗\& 的\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{1}{2}{.}
+\depedge[edge style={red!60!}, edge below]{6}{7}{.}
+\depedge[edge style={red!60!}, edge below]{5}{7}{.}
+\depedge[edge style={red!60!}, edge below]{8}{13}{.}
+\depedge[edge style={red!60!}, edge below]{2}{8}{.}
+\depedge[edge style={red!60!}, edge below]{16}{17}{.}
+\depedge[edge style={red!60!}, edge below]{4}{5}{.}
+\depedge[edge style={red!60!}, edge below]{10}{11}{.}
+\depedge[edge style={red!60!}, edge below]{4}{10}{.}
+\depedge[edge style={red!60!}, edge below]{3}{5}{.}
+\depedge[edge style={red!60!}, edge below]{14}{15}{.}
+\depedge[edge style={red!60!}, edge below]{2}{5}{.}
+\depedge[edge style={red!60!}, edge below]{9}{10}{.}
+\depedge[edge style={red!60!}, edge below]{15}{16}{.}
+\depedge[edge style={red!60!}, edge below]{11}{12}{.}
+\depedge[edge style={red!60!}, edge below]{13}{17}{.}
+\depedge[edge style={red!60!}, edge below]{17}{18}{.}
+\depedge[edge style={red!60!}, edge below]{2}{19}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  不\& 要\& 幹\& 這\& 種\& 事情\& 。\& 頭\& 上\& 三\& 尺\& 有\& 神明\& ，\& 一定\& 要\& 有\& 敬畏\& 之\& 心\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{7}{21}{.}
+\depedge[edge style={red!60!}, edge below]{4}{5}{.}
+\depedge[edge style={red!60!}, edge below]{1}{2}{.}
+\depedge[edge style={red!60!}, edge below]{16}{17}{.}
+\depedge[edge style={red!60!}, edge below]{10}{11}{.}
+\depedge[edge style={red!60!}, edge below]{18}{20}{.}
+\depedge[edge style={red!60!}, edge below]{8}{9}{.}
+\depedge[edge style={red!60!}, edge below]{12}{13}{.}
+\depedge[edge style={red!60!}, edge below]{11}{12}{.}
+\depedge[edge style={red!60!}, edge below]{15}{17}{.}
+\depedge[edge style={red!60!}, edge below]{3}{6}{.}
+\depedge[edge style={red!60!}, edge below]{9}{10}{.}
+\depedge[edge style={red!60!}, edge below]{4}{6}{.}
+\depedge[edge style={red!60!}, edge below]{2}{3}{.}
+\depedge[edge style={red!60!}, edge below]{14}{17}{.}
+\depedge[edge style={red!60!}, edge below]{17}{21}{.}
+\depedge[edge style={red!60!}, edge below]{17}{20}{.}
+\depedge[edge style={red!60!}, edge below]{3}{7}{.}
+\depedge[edge style={red!60!}, edge below]{18}{19}{.}
+\depedge[edge style={red!60!}, edge below]{13}{20}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  現在\& 防控\& 還\& 不\& 能\& 麻痹\& ，\& 還是\& 不\& 要\& 進行\& 過\& 多\& 的\& 聚集\& 活動\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{15}{16}{.}
+\depedge[edge style={red!60!}, edge below]{11}{16}{.}
+\depedge[edge style={red!60!}, edge below]{9}{10}{.}
+\depedge[edge style={red!60!}, edge below]{10}{11}{.}
+\depedge[edge style={red!60!}, edge below]{13}{14}{.}
+\depedge[edge style={red!60!}, edge below]{13}{16}{.}
+\depedge[edge style={red!60!}, edge below]{12}{13}{.}
+\depedge[edge style={red!60!}, edge below]{4}{6}{.}
+\depedge[edge style={red!60!}, edge below]{3}{4}{.}
+\depedge[edge style={red!60!}, edge below]{7}{17}{.}
+\depedge[edge style={red!60!}, edge below]{5}{6}{.}
+\depedge[edge style={red!60!}, edge below]{1}{2}{.}
+\depedge[edge style={red!60!}, edge below]{2}{6}{.}
+\depedge[edge style={red!60!}, edge below]{3}{17}{.}
+\depedge[edge style={red!60!}, edge below]{8}{11}{.}
+\depedge[edge style={red!60!}, edge below]{3}{8}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  希望\& 同\& 各\& 方\& 一道\& ，\& 繪製\& 「\& 精甚\& 」\& 細膩\& 的\& 工筆畫 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{7}{13}{.}
+\depedge[edge style={red!60!}, edge below]{1}{7}{.}
+\depedge[edge style={red!60!}, edge below]{2}{5}{.}
+\depedge[edge style={red!60!}, edge below]{3}{4}{.}
+\depedge[edge style={red!60!}, edge below]{1}{5}{.}
+\depedge[edge style={red!60!}, edge below]{1}{6}{.}
+\depedge[edge style={red!60!}, edge below]{9}{10}{.}
+\depedge[edge style={red!60!}, edge below]{9}{11}{.}
+\depedge[edge style={red!60!}, edge below]{11}{12}{.}
+\depedge[edge style={red!60!}, edge below]{11}{13}{.}
+\depedge[edge style={red!60!}, edge below]{2}{4}{.}
+\depedge[edge style={red!60!}, edge below]{8}{9}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  不\& 要\& 搞\& 奇奇怪怪\& 的\& 建築\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{1}{2}{.}
+\depedge[edge style={red!60!}, edge below]{3}{6}{.}
+\depedge[edge style={red!60!}, edge below]{2}{3}{.}
+\depedge[edge style={red!60!}, edge below]{4}{6}{.}
+\depedge[edge style={red!60!}, edge below]{3}{7}{.}
+\depedge[edge style={red!60!}, edge below]{5}{6}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  沒有\& 可以\& 奉為\& 金科律玉\& 的\& 教科書\& ，\& 也\& 沒有\& 可以\& 對\& 人民\& 頤使氣指\& 的\& 教師爺\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{1}{9}{.}
+\depedge[edge style={red!60!}, edge below]{6}{15}{.}
+\depedge[edge style={red!60!}, edge below]{3}{4}{.}
+\depedge[edge style={red!60!}, edge below]{2}{10}{.}
+\depedge[edge style={red!60!}, edge below]{9}{10}{.}
+\depedge[edge style={red!60!}, edge below]{6}{7}{.}
+\depedge[edge style={red!60!}, edge below]{11}{12}{.}
+\depedge[edge style={red!60!}, edge below]{1}{6}{.}
+\depedge[edge style={red!60!}, edge below]{12}{13}{.}
+\depedge[edge style={red!60!}, edge below]{4}{13}{.}
+\depedge[edge style={red!60!}, edge below]{2}{3}{.}
+\depedge[edge style={red!60!}, edge below]{8}{9}{.}
+\depedge[edge style={red!60!}, edge below]{6}{16}{.}
+\depedge[edge style={red!60!}, edge below]{5}{14}{.}
+\depedge[edge style={red!60!}, edge below]{5}{6}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  天行\& 健\& ，\& 君子\& 以\& 不\& 強自……\& 自強不息\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{5}{8}{.}
+\depedge[edge style={red!60!}, edge below]{4}{8}{.}
+\depedge[edge style={red!60!}, edge below]{7}{8}{.}
+\depedge[edge style={red!60!}, edge below]{6}{7}{.}
+\depedge[edge style={red!60!}, edge below]{2}{3}{.}
+\depedge[edge style={red!60!}, edge below]{1}{4}{.}
+\depedge[edge style={red!60!}, edge below]{1}{2}{.}
+\depedge[edge style={red!60!}, edge below]{1}{9}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  我\& 背\& 過\& 《\& 新華\& 字典\& 》 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{2}{3}{.}
+\depedge[edge style={red!60!}, edge below]{1}{2}{.}
+\depedge[edge style={red!60!}, edge below]{4}{6}{.}
+\depedge[edge style={red!60!}, edge below]{5}{6}{.}
+\depedge[edge style={red!60!}, edge below]{6}{7}{.}
+\depedge[edge style={red!60!}, edge below]{2}{7}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  三\& 隻\& 手\& 合力\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{3}{4}{.}
+\depedge[edge style={red!60!}, edge below]{4}{5}{.}
+\depedge[edge style={red!60!}, edge below]{2}{3}{.}
+\depedge[edge style={red!60!}, edge below]{1}{2}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  在\& 人民\& 面前\& ，\& 我們\& 永遠\& 是\& 小學生\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{6}{7}{.}
+\depedge[edge style={red!60!}, edge below]{1}{3}{.}
+\depedge[edge style={red!60!}, edge below]{5}{7}{.}
+\depedge[edge style={red!60!}, edge below]{7}{8}{.}
+\depedge[edge style={red!60!}, edge below]{4}{7}{.}
+\depedge[edge style={red!60!}, edge below]{7}{9}{.}
+\depedge[edge style={red!60!}, edge below]{1}{7}{.}
+\depedge[edge style={red!60!}, edge below]{2}{3}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  別\& 看\& 你\& 今天\& 鬧\& 得\& 歡\& ，\& 小心\& 今後\& 拉\& 清單\& ，\& 這\& 都\& 得\& 應驗\& 的\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{5}{7}{.}
+\depedge[edge style={red!60!}, edge below]{6}{7}{.}
+\depedge[edge style={red!60!}, edge below]{1}{2}{.}
+\depedge[edge style={red!60!}, edge below]{8}{13}{.}
+\depedge[edge style={red!60!}, edge below]{4}{10}{.}
+\depedge[edge style={red!60!}, edge below]{2}{8}{.}
+\depedge[edge style={red!60!}, edge below]{16}{17}{.}
+\depedge[edge style={red!60!}, edge below]{3}{5}{.}
+\depedge[edge style={red!60!}, edge below]{4}{5}{.}
+\depedge[edge style={red!60!}, edge below]{14}{15}{.}
+\depedge[edge style={red!60!}, edge below]{15}{16}{.}
+\depedge[edge style={red!60!}, edge below]{2}{5}{.}
+\depedge[edge style={red!60!}, edge below]{10}{11}{.}
+\depedge[edge style={red!60!}, edge below]{9}{10}{.}
+\depedge[edge style={red!60!}, edge below]{17}{18}{.}
+\depedge[edge style={red!60!}, edge below]{11}{12}{.}
+\depedge[edge style={red!60!}, edge below]{13}{14}{.}
+\depedge[edge style={red!60!}, edge below]{2}{19}{.}
+\end{dependency}
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+  \begin{deptext}[column sep=0.05cm]
+  不\& 要\& 幹\& 這\& 種\& 事情\& 。\& 頭\& 上\& 三\& 尺\& 有\& 神明\& ，\& 一定\& 要\& 有\& 敬畏\& 之\& 心\& 。 \\
+\end{deptext}
+\depedge[edge style={red!60!}, edge below]{7}{21}{.}
+\depedge[edge style={red!60!}, edge below]{1}{2}{.}
+\depedge[edge style={red!60!}, edge below]{4}{5}{.}
+\depedge[edge style={red!60!}, edge below]{8}{9}{.}
+\depedge[edge style={red!60!}, edge below]{12}{13}{.}
+\depedge[edge style={red!60!}, edge below]{11}{12}{.}
+\depedge[edge style={red!60!}, edge below]{15}{17}{.}
+\depedge[edge style={red!60!}, edge below]{10}{11}{.}
+\depedge[edge style={red!60!}, edge below]{16}{17}{.}
+\depedge[edge style={red!60!}, edge below]{3}{6}{.}
+\depedge[edge style={red!60!}, edge below]{9}{10}{.}
+\depedge[edge style={red!60!}, edge below]{18}{20}{.}
+\depedge[edge style={red!60!}, edge below]{14}{17}{.}
+\depedge[edge style={red!60!}, edge below]{17}{20}{.}
+\depedge[edge style={red!60!}, edge below]{17}{21}{.}
+\depedge[edge style={red!60!}, edge below]{4}{6}{.}
+\depedge[edge style={red!60!}, edge below]{2}{3}{.}
+\depedge[edge style={red!60!}, edge below]{2}{7}{.}
+\depedge[edge style={red!60!}, edge below]{13}{20}{.}
+\depedge[edge style={red!60!}, edge below]{18}{19}{.}
+\end{dependency}
