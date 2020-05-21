@@ -3,6 +3,7 @@
 *.pt
 *.pyc
 *.h5 
+*.hdf5
 *.p
 *.zip
 *.bin
