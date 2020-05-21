@@ -1,0 +1,41 @@
+
+
+\begin{dependency}[hide label, edge unit distance=.5ex]
+    \begin{deptext}[column sep=0.05cm]
+    今年\& 三月\& 十四日\& 重庆\& 成为\& 中国\& 第四\& 个\& 、\& 也\& 是\& 西部\& 唯一\& 的\& 一\& 个\& 直辖市\& 。 \\
+\end{deptext}
+\depedge{1}{3}{.}
+\depedge{2}{3}{.}
+\depedge{3}{5}{.}
+\depedge{4}{5}{.}
+\depedge{5}{6}{.}
+\depedge{5}{9}{.}
+\depedge{5}{11}{.}
+\depedge{5}{18}{.}
+\depedge{6}{8}{.}
+\depedge{7}{8}{.}
+\depedge{10}{11}{.}
+\depedge{11}{17}{.}
+\depedge{12}{17}{.}
+\depedge{13}{14}{.}
+\depedge{13}{17}{.}
+\depedge{15}{16}{.}
+\depedge{16}{17}{.}
+\depedge[edge style={red!60!}, edge below]{15}{16}{.}
+\depedge[edge style={red!60!}, edge below]{7}{8}{.}
+\depedge[edge style={red!60!}, edge below]{4}{5}{.}
+\depedge[edge style={red!60!}, edge below]{8}{17}{.}
+\depedge[edge style={red!60!}, edge below]{10}{11}{.}
+\depedge[edge style={red!60!}, edge below]{16}{17}{.}
+\depedge[edge style={red!60!}, edge below]{11}{17}{.}
+\depedge[edge style={red!60!}, edge below]{13}{14}{.}
+\depedge[edge style={red!60!}, edge below]{2}{3}{.}
+\depedge[edge style={red!60!}, edge below]{3}{4}{.}
+\depedge[edge style={red!60!}, edge below]{5}{6}{.}
+\depedge[edge style={red!60!}, edge below]{9}{11}{.}
+\depedge[edge style={red!60!}, edge below]{5}{9}{.}
+\depedge[edge style={red!60!}, edge below]{13}{17}{.}
+\depedge[edge style={red!60!}, edge below]{11}{18}{.}
+\depedge[edge style={red!60!}, edge below]{12}{17}{.}
+\depedge[edge style={red!60!}, edge below]{1}{2}{.}
+\end{dependency}
