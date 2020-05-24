@@ -8,10 +8,10 @@ python  ./examples/run_squad.py \
 	--learning_rate 1e-5 \
 	--num_train_epochs 5\
 	--max_seq_length 384 \
-	--per_gpu_train_batch_size 10 \
+	--per_gpu_train_batch_size 5 \
 	--per_gpu_eval_batch_size 100 \
-	--output_dir ./output/MY_MODEL \
-	--warmup_steps 10 \
+	--output_dir ./output/warm1000 \
+	--warmup_steps 1000 \
 	--gradient_accumulation_steps 1 \
 	--evaluate_during_training \
         --logging_steps 2500 \
