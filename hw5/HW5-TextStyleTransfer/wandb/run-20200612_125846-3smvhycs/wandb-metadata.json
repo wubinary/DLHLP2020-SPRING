@@ -1,0 +1,31 @@
+{
+    "root": "/home/aa/Desktop/hw/DLHLP2020-SPRING",
+    "program": "main.py",
+    "git": {
+        "remote": "https://github.com/wubinary/DLHLP2020-SPRING.git",
+        "commit": "39385546038e4bbdc78ad7566edb88955cc761a8"
+    },
+    "email": "wubinray@gmail.com",
+    "startedAt": "2020-06-12T12:59:10.253700",
+    "host": "aa",
+    "username": "aa",
+    "executable": "/usr/bin/python3",
+    "os": "Linux-5.0.0-31-generic-x86_64-with-Ubuntu-18.04-bionic",
+    "python": "3.6.10",
+    "gpu": "GeForce GTX 1070",
+    "gpu_count": 2,
+    "cpu_count": 12,
+    "args": [
+        "--do_train",
+        "-batch_size",
+        "128",
+        "-learned_pos_embed",
+        "False",
+        "--use_wandb"
+    ],
+    "state": "running",
+    "jobType": null,
+    "mode": "dryrun",
+    "project": "style-transfer",
+    "heartbeatAt": "2020-06-12T12:59:58.816431"
+}

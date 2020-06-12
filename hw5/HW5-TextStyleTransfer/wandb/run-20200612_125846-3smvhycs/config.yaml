@@ -1,0 +1,147 @@
+wandb_version: 1
+
+F_pretrain_iter:
+  desc: null
+  value: 500
+L2:
+  desc: null
+  value: 0.0
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.9.1
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    python_version: 3.6.10
+adv_factor:
+  desc: null
+  value: 1
+batch_size:
+  desc: null
+  value: 128
+cyc_factor:
+  desc: null
+  value: 0.5
+d_model:
+  desc: null
+  value: 256
+data_path:
+  desc: null
+  value: ./data/yelp/
+device:
+  desc: null
+  value: cuda
+discriminator_method:
+  desc: null
+  value: Multi
+do_test:
+  desc: null
+  value: false
+do_train:
+  desc: null
+  value: true
+drop_rate_config:
+  desc: null
+  value:
+  - - 1
+    - 0
+  - - 2
+    - 2000
+dropout:
+  desc: null
+  value: 0.1
+embed_size:
+  desc: null
+  value: 256
+eval_steps:
+  desc: null
+  value: 25
+h:
+  desc: null
+  value: 4
+inp_drop_prob:
+  desc: null
+  value: 0.1
+iter_D:
+  desc: null
+  value: 10
+iter_F:
+  desc: null
+  value: 5
+learned_pos_embed:
+  desc: null
+  value: false
+load_pretrained_embed:
+  desc: null
+  value: false
+lr_D:
+  desc: null
+  value: 0.0001
+lr_F:
+  desc: null
+  value: 0.0001
+max_length:
+  desc: null
+  value: 16
+min_freq:
+  desc: null
+  value: 3
+num_classes:
+  desc: null
+  value: 3
+num_layers:
+  desc: null
+  value: 4
+num_styles:
+  desc: null
+  value: 2
+part2:
+  desc: null
+  value: false
+part2_model_dir:
+  desc: null
+  value: null
+part2_step:
+  desc: null
+  value: null
+preload_D:
+  desc: null
+  value: ''
+preload_F:
+  desc: null
+  value: ''
+pretrained_embed_path:
+  desc: null
+  value: ./embedding/
+save_folder:
+  desc: null
+  value: ./save/Jun12205915
+save_path:
+  desc: null
+  value: ./save
+slf_factor:
+  desc: null
+  value: 0.25
+temp:
+  desc: null
+  value: 1.0
+temperature_config:
+  desc: null
+  value:
+  - - 1.0
+    - 0
+  - - 0.5
+    - 2000
+test_out:
+  desc: null
+  value: ./submission.txt
+train_iter:
+  desc: null
+  value: 2000
+use_gumbel:
+  desc: null
+  value: false
+use_wandb:
+  desc: null
+  value: true

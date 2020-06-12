@@ -1,0 +1,10 @@
+2020-06-12 20:59:10,588 DEBUG   MainThread:3748 [wandb_config.py:_load_defaults():133] no defaults not found in config-defaults.yaml
+2020-06-12 20:59:10,593 DEBUG   MainThread:3748 [meta.py:_setup_code_git():49] probe for git information
+2020-06-12 20:59:10,610 DEBUG   MainThread:3748 [run_manager.py:__init__():547] Initialized sync for style-transfer/3smvhycs
+2020-06-12 20:59:10,612 INFO    MainThread:3748 [run_manager.py:wrap_existing_process():1147] wrapping existing process 3513
+2020-06-12 20:59:10,612 WARNING MainThread:3748 [io_wrap.py:register():104] SIGWINCH handler was not None: <Handlers.SIG_DFL: 0>
+2020-06-12 20:59:10,772 INFO    MainThread:3748 [run_manager.py:init_run():926] system metrics and metadata threads started
+2020-06-12 20:59:10,772 INFO    MainThread:3748 [run_manager.py:wrap_existing_process():1164] informing user process we are ready to proceed
+2020-06-12 20:59:10,774 INFO    MainThread:3748 [run_manager.py:_sync_etc():1296] entering loop for messages from user process
+2020-06-12 20:59:11,592 INFO    Thread-3  :3748 [run_manager.py:_on_file_modified():692] file/dir modified: /home/aa/Desktop/hw/DLHLP2020-SPRING/hw5/HW5-TextStyleTransfer/wandb/run-20200612_125846-3smvhycs/config.yaml
+2020-06-12 20:59:11,592 INFO    Thread-3  :3748 [3smvhycs:run_manager.py:_on_file_modified():692] file/dir modified: /home/aa/Desktop/hw/DLHLP2020-SPRING/hw5/HW5-TextStyleTransfer/wandb/run-20200612_125846-3smvhycs/config.yaml
