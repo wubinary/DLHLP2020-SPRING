@@ -30,5 +30,7 @@ hw4/hw4-2/.ipynb_checkpoints
 hw5/.ipynb_checkpoints
 hw5/HW5-TextStyleTransfer/.ipynb_checkpoints
 hw5/HW5-TextStyleTransfer/data/gender_data/
+hw5/HW5-TextStyleTransfer/save/
+hw5/HW5-TextStyleTransfer/wandb/
 
 
